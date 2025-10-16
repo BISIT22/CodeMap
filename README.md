@@ -1,70 +1,210 @@
-# Getting Started with Create React App
+# CodeMap - Визуализация структуры ZIP-архивов
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+**CodeMap** — это современное веб-приложение на React для загрузки и визуализации структуры ZIP-архивов проектов. Приложение позволяет интерактивно исследовать файловую иерархию с поддержкой поиска, фильтрации скрытых файлов и плавными анимациями.
 
-## Available Scripts
+## Основные возможности
 
-In the project directory, you can run:
+**Загрузка ZIP-файлов**
+- Drag-and-drop интерфейс
+- Кнопка выбора файла
+- Поддержка файлов до 100 МБ
 
-### `npm start`
+**Распаковка в браузере**
+- Полностью клиентская обработка (без сервера)
+- Использование JSZip для распаковки
+- Быстрая обработка больших архивов
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+**Интерактивное дерево файлов**
+- Сворачивание/разворачивание папок
+- Иконки для разных типов файлов
+- Отображение размера файлов при наведении
+- Плавные анимации при взаимодействии
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+**Поиск и фильтрация**
+- Полнотекстовый поиск по имени файла/папки
+- Фильтрация скрытых системных файлов (.DS_Store, Thumbs.db, .git и др.)
+- Сохранение состояния раскрытых папок в localStorage
 
-### `npm test`
+**Тема оформления**
+- Светлая и тёмная тема
+- Плавное переключение
+- Сохранение предпочтений пользователя
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+**Оптимизация производительности**
+- Ленивая загрузка компонентов
+- Эффективная работа с большими деревьями файлов
+- Минимальные перерисовки
 
-### `npm run build`
+## Структура проекта
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```
+codemap_v2/
+├── public/
+│   ├── index.html
+│   └── favicon.ico
+├── src/
+│   ├── components/
+│   │   ├── FileTree.jsx          # Компонент дерева файлов
+│   │   ├── FileNode.jsx          # Компонент узла файла/папки
+│   │   ├── FileUploader.jsx      # Компонент загрузки ZIP
+│   │   ├── SearchBar.jsx         # Компонент поиска
+│   │   ├── ThemeToggle.jsx       # Переключатель темы
+│   │   └── HiddenFilesToggle.jsx # Переключатель скрытых файлов
+│   ├── utils/
+│   │   ├── zipParser.js          # Функции распаковки ZIP
+│   │   └── storageUtils.js       # Работа с localStorage
+│   ├── App.jsx                   # Главный компонент
+│   ├── App.css                   # Стили приложения
+│   └── index.js                  # Точка входа
+├── package.json
+└── README.md
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Быстрый старт
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Требования
+- Node.js 14+ и npm 6+
+- Современный браузер (Chrome, Firefox, Edge)
 
-### `npm run eject`
+### Установка
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+1. **Клонируйте репозиторий:**
+```bash
+git clone <repository-url>
+cd codemap_v2
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+2. **Установите зависимости:**
+```bash
+npm install
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+3. **Запустите приложение:**
+```bash
+npm start
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Приложение откроется в браузере по адресу `http://localhost:3000`
 
-## Learn More
+### Сборка для продакшена
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```bash
+npm run build
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Собранные файлы будут в папке `build/`
 
-### Code Splitting
+## Зависимости
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### Production
+- **react** - Библиотека для создания UI
+- **react-dom** - Рендеринг React в DOM
+- **framer-motion** - Библиотека анимаций
+- **react-icons** - Иконки
+- **jszip** - Распаковка ZIP-архивов
 
-### Analyzing the Bundle Size
+## Использование
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### 1. Загрузка ZIP-файла
 
-### Making a Progressive Web App
+- Перетащите ZIP-файл в область загрузки
+- Или нажмите кнопку "Выбрать файл"
+- Приложение автоматически распакует архив
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+### 2. Навигация по дереву
 
-### Advanced Configuration
+- Нажимайте на стрелки для сворачивания/разворачивания папок
+- Используйте кнопки "Развернуть всё" и "Свернуть всё"
+- При наведении отображается размер файла
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+### 3. Поиск файлов
 
-### Deployment
+- Введите текст в поле поиска
+- Результаты фильтруются в реальном времени
+- Результаты поиска выделяются жёлтым цветом
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+### 4. Фильтрация скрытых файлов
 
-### `npm run build` fails to minify
+- Нажмите кнопку "Скрытые файлы" для отображения системных файлов
+- По умолчанию скрыты: .DS_Store, Thumbs.db, .git, .env и др.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### 5. Переключение темы
+
+- Нажмите иконку солнца/луны в верхнем правом углу
+- Тема сохраняется в localStorage
+
+## 🔧 Технические детали
+
+### Распаковка ZIP
+
+Функция `parseZip()` в `utils/zipParser.js`:
+- Использует JSZip для распаковки архива в браузере
+- Строит иерархическую структуру файлов и папок
+- Фильтрует скрытые системные файлы
+- Сортирует папки перед файлами
+
+### Анимации
+
+Все анимации реализованы с помощью **Framer Motion**:
+- Появление элементов при загрузке
+- Плавное открытие/закрытие папок
+- Подсветка при наведении
+- Вращение иконок при раскрытии
+
+### Хранилище состояния
+
+- **localStorage** используется для сохранения:
+  - Раскрытых папок (для восстановления при перезагрузке)
+  - Выбранной темы (светлая/тёмная)
+
+### Иконки файлов
+
+Автоматическое определение иконок по расширению файла:
+- JavaScript/TypeScript: Code icon
+- Python: Code icon
+- HTML/CSS: Code icon
+- Изображения: Image icon
+- Архивы: Archive icon
+- И многое другое...
+
+## Производительность
+
+- **Максимальный размер архива:** 100+ МБ
+- **Время распаковки:** зависит от размера и скорости браузера
+- **Оптимизация:** ленивая загрузка, минимизация перерисовок
+
+## Известные ограничения
+
+- Некоторые браузеры могут иметь ограничения на размер файлов в памяти
+- Очень большие архивы (>500 МБ) могут замедлить браузер
+- Поддержка только ZIP-архивов (не RAR, 7z и т.д.)
+
+## 📝 Лицензия
+
+MIT License - свободно используйте в своих проектах
+
+## 👨Разработка
+
+### Запуск в режиме разработки
+
+```bash
+npm start
+```
+
+### Запуск тестов
+
+```bash
+npm test
+```
+
+### Сборка
+
+```bash
+npm run build
+```
+
+## Поддержка
+
+Если у вас есть вопросы или проблемы, обращайтесь на почту alexsobian@gmail.com.
+
+---
